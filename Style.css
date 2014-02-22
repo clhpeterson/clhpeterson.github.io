@@ -1,0 +1,53 @@
+body{
+    background-color: #BABABA;
+}
+
+h1{
+    color: white;
+    text-shadow: -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+    text-align: center;
+    font-size: 250%;
+}
+
+
+li{
+    list-style-type: circle;
+    text-align: justify;
+}
+img{
+    vertical-align: middle;
+    display: table-cell;
+    max-width: 80%;
+    max-height: 80%;
+}
+
+img.left{
+    float: left;
+}
+img.right{
+    float: right;
+}
+div{
+    background-color: white;
+    border-style: dashed;
+    display: table;
+    padding: 4%;
+    margin: 5%;
+    width: 80%;
+}
+span{
+    vertical-align: middle;
+    display: table-cell;
+}
+li.left{
+    text-align: left;
+    list-style-type: none;
+    
+}
+li.right{
+    text-align:right;
+    list-style-type: none;
+}
