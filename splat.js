@@ -41,6 +41,6 @@ var animate = function(){
 	}
 	else {
 		draw_circle(context, x, y, radius, color);
-		radius += 1;
+		radius += 20;
 	}
 }
