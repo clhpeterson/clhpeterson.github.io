@@ -1,5 +1,4 @@
-var canvas, context, width, height, radius, color, x, y;
-var balls = [];
+var canvas, context, width, height, radius, color, x, y, to_animate, just_broken;
 
 window.onload = function(){
 	canvas = document.getElementById("canvas");
@@ -12,12 +11,17 @@ window.onload = function(){
 	color = "#FFFFFF";
 	x = 0;
 	y = 0;
+	to_animate = true;
+	just_broken = false;
 
 	canvas.addEventListener("click", function(event){
-		x = event.pageX;
-		y = event.pageY;
-		radius = 0;
-		color = randomColor();
+		if (to_animate){
+			just_broken = false;
+			x = event.pageX;
+			y = event.pageY;
+			radius = 0;
+			color = randomColor();
+		}
 	})
 
 	window.addEventListener("resize", function(event){
@@ -27,6 +31,12 @@ window.onload = function(){
 		canvas.height = height;
 	})
 
+	document.onkeypress = function(event){
+		if (event.keyCode === 32){
+			to_animate = !to_animate;
+			just_broken = true;
+		}
+	}
 
 	animate();
 }
@@ -44,11 +54,13 @@ var draw_circle = function(context, x, y, radius, color) {
 
 var animate = function(){
 	requestAnimationFrame(animate);
-	if (radius >= Math.max(2*width, 2*height)){
-		canvas.style.backgroundColor = color
-	}
-	else {
-		draw_circle(context, x, y, radius, color);
-		radius += 20;
+	if (to_animate && !just_broken){
+		if (radius >= Math.max(2*width, 2*height)){
+			canvas.style.backgroundColor = color;
+		}
+		else {
+			draw_circle(context, x, y, radius, color);
+			radius += 20;
+		}
 	}
 }
