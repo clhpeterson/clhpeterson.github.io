@@ -15,13 +15,11 @@ window.onload = function(){
 	just_broken = false;
 
 	canvas.addEventListener("click", function(event){
-		if (to_animate){
-			just_broken = false;
-			x = event.pageX;
-			y = event.pageY;
-			radius = 0;
-			color = randomColor();
-		}
+		to_animate = true;
+		x = event.pageX;
+		y = event.pageY;
+		radius = 0;
+		color = randomColor();
 	})
 
 	window.addEventListener("resize", function(event){
@@ -33,8 +31,7 @@ window.onload = function(){
 
 	document.onkeypress = function(event){
 		if (event.keyCode === 32){
-			to_animate = !to_animate;
-			just_broken = true;
+			to_animate = false;
 		}
 	}
 
@@ -54,7 +51,7 @@ var draw_circle = function(context, x, y, radius, color) {
 
 var animate = function(){
 	requestAnimationFrame(animate);
-	if (to_animate && !just_broken){
+	if (to_animate){
 		if (radius >= Math.max(2*width, 2*height)){
 			canvas.style.backgroundColor = color;
 		}
