@@ -20,6 +20,14 @@ window.onload = function(){
 		color = randomColor();
 	})
 
+	window.addEventListener("resize", function(event){
+		width = window.innerWidth;
+		canvas.width = width;
+		height = window.innerHeight;
+		canvas.height = height;
+	})
+
+
 	animate();
 }
 
