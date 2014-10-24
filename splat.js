@@ -36,7 +36,7 @@ var draw_circle = function(context, x, y, radius, color) {
 
 var animate = function(){
 	requestAnimationFrame(animate);
-	if (radius >= Math.max(width, height)){
+	if (radius >= Math.max(2*width, 2*height)){
 		canvas.style.backgroundColor = color
 	}
 	else {
