@@ -1,4 +1,4 @@
-var canvas, context, width, height, radius, color, x, y, to_animate, just_broken;
+var canvas, context, width, height, radius, color, x, y, to_animate, just_broken, expansion_rate;
 
 window.onload = function(){
 	canvas = document.getElementById("canvas");
@@ -20,6 +20,7 @@ window.onload = function(){
 		y = event.pageY;
 		radius = 0;
 		color = randomColor();
+		expansion_rate = Math.random()*20
 	})
 
 	window.addEventListener("resize", function(event){
@@ -57,7 +58,7 @@ var animate = function(){
 		}
 		else {
 			draw_circle(context, x, y, radius, color);
-			radius += 20;
+			radius += expansion_rate;
 		}
 	}
 }
