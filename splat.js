@@ -1,4 +1,4 @@
-var canvas, context, width, height, radius, color, x, y, to_animate, just_broken, expansion_rate, num_balls;
+var canvas, context, width, height, radius, color, x, y, to_animate, just_broken, expansion_rate;
 var balls = [];
 
 window.onload = function(){
@@ -14,12 +14,10 @@ window.onload = function(){
 	y = 0;
 	to_animate = true;
 	just_broken = false;
-	num_balls = 0;
 
 	canvas.addEventListener("click", function(event){
-		balls.push({x: event.pageX, y: event.pageY, radius: 0, color: randomColor(), expansion_rate: Math.random()*20})
+		balls.push({x: event.pageX, y: event.pageY, radius: 0, color: randomColor(), expansion_rate: Math.random()*20});
 		to_animate = true;
-		num_balls += 1;
 	})
 
 	window.addEventListener("resize", function(event){
@@ -32,6 +30,7 @@ window.onload = function(){
 	document.onkeypress = function(event){
 		if (event.keyCode === 32){
 			to_animate = false;
+			balls = [];
 		}
 	}
 
@@ -53,14 +52,13 @@ var animate = function(){
 	requestAnimationFrame(animate);
 	if (to_animate){
 		var i = 0;
-		while (i < num_balls) {
+		while (i < balls.length) {
 			ball = balls[i];
 			draw_circle(context, ball.x, ball.y, ball.radius, ball.color);
 			if (ball.radius >= Math.max(2*width, 2*height)){
 				for (var j = 0; j < i; j++){
 					balls.shift();
 				}
-				num_balls -= i;
 				i = 0;
 			}
 			else {
